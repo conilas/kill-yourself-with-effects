@@ -2,12 +2,24 @@ effect suicidal{
   fun print_me(s:string) : ()
 }
 
+val life_lover_handler = handler {
+  return   x -> [x]
+  print_me(s:string) -> {
+    println(s)
+    resume(lifesGood())
+  }
+}
+
 val suicidal_handler = handler {
   return   x -> [x]
   print_me(s:string) -> {
     println(s)
     resume(randomWay())
   }
+}
+
+fun lifesGood() : <console> () {
+  return println("Life's good, don't waste it (:")
 }
 
 fun randomWay() : <console, ndet> (){
@@ -35,6 +47,12 @@ fun extensive_calculation(x1:int, x2:int) : <console, suicidal> (){
 
 fun main() {
   suicidal_handler {
+    extensive_calculation(5, 10)
+    extensive_calculation(10, 4)
+    extensive_calculation(20, 30)
+  }
+  
+  life_lover_handler {
     extensive_calculation(5, 10)
     extensive_calculation(10, 4)
     extensive_calculation(20, 30)
