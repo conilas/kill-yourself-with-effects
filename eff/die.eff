@@ -1,0 +1,6 @@
+handle
+    perform (Print "A")
+with
+| effect (Print msg) k ->
+    perform (Print ("Kill yourself, dude. There shall be no IO here."))
+;;
